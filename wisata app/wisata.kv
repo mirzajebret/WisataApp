@@ -1,0 +1,411 @@
+<WelcomeScrn>:
+    id: welcome_screen
+    name: 'welcome_screen'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/bg.png'
+    
+    MDLabel:
+        text: 'JELAJAH GARUT'
+        pos_hint : {'center_y' : 0.9}
+        font_style: 'H2'
+        halign: "center"
+        font_name: "assets/Montserrat-Bold.ttf"
+
+    MDLabel:
+        text: "W i s a t a   d i   G a r u t   u n t u k   K a m u   y a n g   S u k a   B e r p e t u a l a n g"
+        theme_text_color: "Secondary"
+        pos_hint : {'center_y' : 0.8}
+        font_style: 'Button'
+        halign: "center"
+    
+    MDTextField:
+        hint_text: "Hai"
+        pos_hint : {'center_x' : 0.5, 'center_y' : 0.6}
+        size_hint_x:None
+        width:200
+        max_text_length: 15
+        helper_text: "masukkan nama"
+        helper_text_mode: "persistent"
+
+    MDFillRoundFlatButton:
+        text: '         Masuk         '
+        font_style: 'Button'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+        on_press: app.show_alert_dialog()
+        on_release: app.root.current = "logged in"
+
+<LoggedIn>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/bg-main.jpg'
+    BoxLayout:
+        orientation: "vertical"
+        MDToolbar:
+            title: "Selamat Datang di Jelajah Garut"
+            #md_bg_color: 1, 1, 1, 1
+            elevation: 10
+            #opposite_colors: True
+            left_action_items: [["arrow-left",  lambda x: app.change_screen("welcome screen")]]
+            right_action_items: [["share-variant",  lambda x: app.change_screen("logged in")]]
+        MDLabel:
+            text:""
+        
+    MDBoxLayout:
+        size_hint_y: None
+        height: "450dp"
+        orientation: 'vertical'
+
+
+    MDLabel:
+        text: 'Menjelajah Garut'
+        pos_hint : {'center_y' : 0.7}
+        font_style: 'H4'
+        halign: "center"
+        font_name: "assets/Montserrat-Bold.ttf"
+    MDLabel:
+        text: 'LEBIH AMAN, LEBIH AKURAT'
+        pos_hint : {'center_y' : 0.6}
+        font_style: 'H2'
+        halign: "center"
+        font_name: "assets/Montserrat-Bold.ttf"
+    MDFillRoundFlatButton:
+        text: 'Cari Destinasi Wisata'
+        font_style: 'Button'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+        on_release: app.root.current = "logged in2"
+    MDFlatButton:
+        text: "AGENDA"
+        custom_color: 0, 0, 0, 0
+        pos_hint: {'center_x': 0.1, 'center_y': 0.85}
+        font_size: "18sp"
+        font_name: "assets/Montserrat-Medium.ttf"
+        on_release: app.samsak_alert()
+
+    MDFlatButton:
+        text: "TIPS TRAVELLING"
+        pos_hint: {'center_x': 0.3, 'center_y': 0.85}
+        font_name: "assets/Montserrat-Medium.ttf"
+        font_size: "18sp"
+        on_release: app.samsak_alert()
+
+    MDFlatButton:
+        text: "TEMPAT MENGINAP"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+        font_name: "assets/Montserrat-Medium.ttf"
+        font_size: "18sp"
+        on_release: app.samsak_alert()
+
+    MDFlatButton:
+        text: "SPOT FOTO"
+        pos_hint: {'center_x': 0.7, 'center_y': 0.85}
+        font_name: "assets/Montserrat-Medium.ttf"
+        font_size: "18sp"
+        on_release: app.samsak_alert()
+
+    MDFlatButton:
+        text: "NOMOR DARURAT"
+        pos_hint: {'center_x': 0.9, 'center_y': 0.85}
+        font_name: "assets/Montserrat-Medium.ttf"
+        font_size: "18sp"
+        on_release: app.samsak_alert()
+
+<MySwiper@MDSwiperItem>
+    
+<LoggedIn2>:
+    name: 'logged in2'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/bg.png'
+    MDToolbar:
+        id: toolbar
+        title: "Pilih Destinasi Wisata"
+        left_action_items: [["arrow-left",  lambda x: app.change_screen("logged in")]]
+        right_action_items: [["share-variant",  lambda x: app.change_screen("logged in")]]
+        elevation: 10
+        pos_hint: {"top": 1}
+
+    
+        
+    
+    MDSwiper:
+        size_hint_y: None
+        height: root.height - toolbar.height - dp(40)
+        y: root.height - self.height - toolbar.height - dp(10)
+   
+        
+        MySwiper:
+            FitImage:
+                source: "assets/papandayan1.jpg"
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Gunung Papandayan"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+                    
+                MDLabel: 
+                    text:"Salah satu daya tarik dari Tempat Wisata Alam Gunung Papandayan adalah sisa letusan gunung berapinya. Hingga sekarang, Gunung Papandayan sendiri masih aktif dan terakhir bererupsi pada tahun 2002 lalu. Salah satu kawah terbesar bernama kawah Si Balagadama. Hal yang bisa kamu lihat laiinnya adalah danau sisa letusan kawah berapinya. Papandayan juga memiliki sebuah hutan mati yang sangat mirip dengan kawah putih, Bandung. Kamu akan melihat sisa batang pohon yang sudah berdaun lagi di hamparan pasir putih."
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    halign: "left"
+                
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+                    on_release: app.root.current = "selengkapnya"
+                    
+        
+                
+        MySwiper:
+            FitImage:
+                source: "assets/guntur1.png"
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30  
+                MDLabel: 
+                    text:"Gunung Guntur"
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center" 
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text:"Pesona Garut yang bertema gunung ini sendiri memiliki empat buah puncak dengan puncak tertinggi pada puncak kedua yang ditandai adanya tugu geodesi dari ahli vulkanologi. Gunung yang berdiri kokoh diatas ketinggian 2249 mdpl ternyata memiliki karakter yang hampir serupa dengan Gunung Semeru. Permukaan track summit kedua gunung ini berpasir dan memiliki banyak kerikil. Kebanyakan pendaki senior menjadikan Gunung Guntur sebagai pendakian uji coba sebelum melakukan pendakian ke Gunung Semeru."
+                    halign: "left" 
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+
+        MySwiper:
+            FitImage:
+                source: "assets/talaga1.jpg" 
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Talaga Bodas"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"  
+                MDLabel: 
+                    text:"Di Telaga Bodas kamu akan melihat pemandangan indah berupa danau kawah yang memiliki warna putih, hijau hingga biru. Tidak jarang karena keindahannya tersebut, Telaga Bodas juga sering digunakan sebagai tempat untuk foto pre-wedding.Kamu bisa menikmati pemandian air panas yang lokasinya hanya berjark sekitar 200 meter dari kawah. Ada juga berbagai macam aktifitas lain, seperti piknik, trekking, hingga fotografi. Para pengunjung yang datang  akan dikenakan biaya tiket masuk sebesar Rp 5.000 pada hari biasa dan Rp 7.500 pada akhir pekan."   
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    halign: "left"
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+                    
+        MySwiper:
+            FitImage:
+                source: "assets/cipanas1.jpg"
+
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Cipanas"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text: "Cuaca Garut yang dingin memang paling cocok untuk kamu nikmati dengan berendam di pemandiaan umum. Air panas yang ada di sini langsung dari Gunung Berapi Guntur. Tidak hanya sekedar berendam, di Wisata Cipanas Garut kamu juga bisa berenang dan bermain di wahana waterboom. Tempat wisata di Garut ini berlokasi tidak jauh dari alun-alun Tarogong."
+                    halign: "left"
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+        MySwiper:
+            FitImage:
+                source: "assets/kamojangeco1.jpg"
+
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Kamojang Ecopark"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text:"Kamojang Ecopark termasuk salah satu tempat wisata baru di Garut. Berlokasi di tengah hutan pinus, tempat ini menawarkan fasilitas outbond, mulai dari camping ground, flying  fox, off road, kedai makanan, toilet hingga mushalla. Selain itu terdapat penyewaan tenda, hammock, hingga baju kimono bagi para pengunjung. Untuk masuk, kamu hanya perlu membayar tiket masuk sebesar Rp 15.000 saja."
+                    halign: 'left'
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+        MySwiper:
+            FitImage:
+                source: "assets/sampireun1.jpg"
+ 
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Kampung Sampiren"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text:"Tempat wisata di Garut ini sering menjadi pilihan untuk berbulan madu bagi para pengantin baru. Berada di ketinggian sekitar 1000 mdpl, Kampung Sampireun memiliki sebuah danau yang dihiasi dengan pepohonan rimbun serta penginapan. Hal tersebutlah yang menjadikannya memiliki suasana khas pedesaan di Garut. Para wisatawan yang datang bisa berkeliling danau dengan menggunakan perahu yang disediakan penyedia resort."
+                    halign: 'left'
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+        MySwiper:
+            FitImage:
+                source: "assets/karacak1.jpg"
+
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                MDLabel: 
+                    text:"Karacak Valley"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text:"Dibuka pada tahun 2016 lalu, Karacak Valley menjadi sangat populer setelah banyak pengunjung yang datang ke sini mengupload fotonya. Sebenarnya, tempat ini merupakan kawasan hutan pinus dan perkebunan kopi milik Perhutani. Secara keseluruhan, tempat wisata di Garut tersebut memiliki luas kurang lebih 92 hektar. Ada banyak aktifitas yang bisa kamu lakukan di Karacak Valley, seperti camping, trekking, hingga foto-foto karena banyaknya spot menarik yang ada di sekitar Karacak Valley."
+                    halign: 'left'
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+        MySwiper:
+            FitImage:
+                source: "assets/pilar1.jpg"
+
+        
+            BoxLayout:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                size_hint: None, None
+                size: 320, 400     
+                orientation: "vertical"  
+                padding: 20
+                spacing: 30 
+                
+                MDLabel: 
+                    text:"Bukit Pilar Angin"
+                    pos_hint: {"top": 1}
+                    theme_text_color: "Secondary"
+                    font_style: "H3"
+                    halign: "center"
+
+        
+
+                MDLabel: 
+                    theme_text_color: "Hint"
+                    font_style: "Caption"
+                    text:"Bukit Pilar Angin merupakan sebuah bukit yang pemandangannya mirip dengan padang savanna yang ada di Lombok. Inilah mengapa banyak wisatawan yang menjuluki Bukit Pilar Angin sebagai “Sumba Van Garut”. Karena masih alami, di Bukit Pilar Angin, kamu bisa melihat pemandangan berupa gerombolan domba putih yang sedang digembala. Untuk menjangkau Bukit Pilar Angin, kamu bisa menjangkaunya dari pusat kota Garut sekitar 3,5 jam dengan jarak tempuh sekitar 104 km. Karena tempat wisata alami, kamu tidak akan dikenakan biaya tiket masuk saat ke sini."
+                    halign: 'left'
+                MDRectangleFlatIconButton:
+                    icon: "magnify"
+                    text: 'Selengkapnya'
+                    text_color: [14/255, 29/255, 55/255, 1]
+                    line_color: 0, 0, 0, 0
+                    font_style: 'Caption'
+                
+
+<selengkapnya>:
+    name: 'Selengkapnya'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/bg.png'
+    MDToolbar:
+        id: toolbar
+        title: "Informasi Gunung Papandayan"
+        left_action_items: [["arrow-left",  lambda x: app.change_screen("logged in2")]]
+        right_action_items: [["share-variant",  lambda x: app.change_screen("logged in2")]]
+        elevation: 10
+        pos_hint: {"top": 1}
+        
+    MDCard:
+        radius: [10,0,0,10]
+        size_hint : None, None
+        size: 600, 350
+        pos_hint : {"center_x":.5, "center_y":.45}
+        elevation: 20
+        md_bg_color: [231/255, 244/255, 255/255, .0]
+        spacing: 10 
+        padding: 20
+        orientation: "vertical"
+        MDLabel: 
+            font_style: "H3"
+            text: "Lokasi"
+        MDLabel:
+            font_style: "H5"
+            text: "Karamat Wangi, Cisurupan, Kabupaten Garut, Jawa Barat"
+
+
+<TooltipMDIconButton@MDIconButton+MDTooltip>
